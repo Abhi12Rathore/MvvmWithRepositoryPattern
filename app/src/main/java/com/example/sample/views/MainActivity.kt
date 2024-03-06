@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContentViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        supportActionBar?.title="MVVM Demo"
+
 
         val mainActivityViewModels: MainActivityViewModels = ViewModelProvider(
             this, MainViewModelFactory(
