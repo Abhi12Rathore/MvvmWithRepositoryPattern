@@ -6,7 +6,5 @@ I have created a sample App with MVVM architecture and repository pattern. Follo
  3. Repository pattern for handling all things in it
  4. Coroutines  
 
-<video width="320" height="240" controls>
-  <source src="/Users/a.r/Desktop/untitled.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+[Watch demo video](/Users/a.r/Desktop/untitled.webm)
+
