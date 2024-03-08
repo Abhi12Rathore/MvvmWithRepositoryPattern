@@ -6,3 +6,5 @@ I have created a sample App with MVVM architecture and repository pattern. Follo
  3. Repository pattern for handling all things in it
  4. Coroutines  
 
+[Watch demo video](/Users/a.r/Desktop/untitled.webm)
+
