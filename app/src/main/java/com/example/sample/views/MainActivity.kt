@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sample.R
 import com.example.sample.databinding.ActivityMainBinding
 import com.example.sample.network.ApiResult
 import com.example.sample.repositories.Repository
 import com.example.sample.viewModelFactory.MainViewModelFactory
 import com.example.sample.viewmodels.MainActivityViewModels
+import com.example.sample.views.adapter.MainActivityAdapter
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContentViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        supportActionBar?.title="MVVM Demo"
+        supportActionBar?.title = "MVVM Demo"
 
 
         val mainActivityViewModels: MainActivityViewModels = ViewModelProvider(
@@ -41,7 +43,16 @@ class MainActivity : AppCompatActivity() {
 
                     is ApiResult.Success -> {
                         mContentViewBinding.loading = false
-                        mContentViewBinding.txtData.text = Gson().toJson(it.data)
+                        mContentViewBinding.rvData.apply {
+                            layoutManager = LinearLayoutManager(this@MainActivity)
+                            adapter = it.data?.let { data ->
+                                MainActivityAdapter(
+                                    this@MainActivity,
+                                    data
+                                )
+                            }
+                        }
+                        //mContentViewBinding.txtData.text = Gson().toJson(it.data)
                     }
 
                     is ApiResult.Error -> {
