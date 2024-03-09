@@ -2,13 +2,20 @@ package com.example.sample.network
 
 import android.provider.SyncStateContract
 import com.example.sample.network.ApiConstants.BASE_URL
+import dagger.Module
+import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
+
+@Module
 object APIClient {
 
-    private fun getRetrofit(): Retrofit {
+    @Singleton
+    @Provides
+     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

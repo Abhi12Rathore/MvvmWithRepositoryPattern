@@ -9,14 +9,15 @@ import com.example.sample.network.APIClient
 import com.example.sample.network.ApiResult
 import com.example.sample.repositories.Repository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivityViewModels(private val repo:Repository) : ViewModel() {
+class MainActivityViewModels @Inject constructor(private val repository: Repository) : ViewModel() {
     val liveData: LiveData<ApiResult<List<ProductsData>>>
-        get() = repo.liveData
+        get() = repository.liveData
 
     fun fetchProductData() {
         viewModelScope.launch {
-            repo.fetchData()
+            repository.fetchData()
         }
     }
 }

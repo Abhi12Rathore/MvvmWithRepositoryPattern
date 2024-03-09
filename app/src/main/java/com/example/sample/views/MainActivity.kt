@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sample.MyApplication
 import com.example.sample.R
 import com.example.sample.databinding.ActivityMainBinding
 import com.example.sample.network.ApiResult
@@ -16,21 +17,23 @@ import com.example.sample.viewmodels.MainActivityViewModels
 import com.example.sample.views.adapter.MainActivityAdapter
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mContentViewBinding: ActivityMainBinding
 
+    @Inject
+    lateinit var viewModelFactory: MainViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContentViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         supportActionBar?.title = "MVVM Demo"
-
+        (application as MyApplication).appComponent.inject(this)
 
         val mainActivityViewModels: MainActivityViewModels = ViewModelProvider(
-            this, MainViewModelFactory(
-                Repository()
-            )
+            this, viewModelFactory
         )[MainActivityViewModels::class.java]
         mainActivityViewModels.fetchProductData()
 
