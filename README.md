@@ -5,6 +5,7 @@ I have created a sample App with MVVM architecture and repository pattern. Follo
  2. Sealed classes for handling API response
  3. Repository pattern for handling all things in it
  4. Coroutines  
+ 5. Added Dependency Injection with Dagger 2 
 
 [Watch demo video](/Users/a.r/Desktop/untitled.webm)
 
