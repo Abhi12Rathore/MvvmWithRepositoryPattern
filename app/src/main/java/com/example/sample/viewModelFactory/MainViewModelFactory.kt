@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.sample.repositories.Repository
 import com.example.sample.viewmodels.MainActivityViewModels
+import javax.inject.Inject
 
-class MainViewModelFactory(private val repo: Repository) : ViewModelProvider.Factory {
+class MainViewModelFactory @Inject constructor(private val repo: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainActivityViewModels(repo) as T
     }

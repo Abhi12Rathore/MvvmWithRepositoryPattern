@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sample.models.ProductsData
 import com.example.sample.network.APIClient
 import com.example.sample.network.ApiResult
+import javax.inject.Inject
 
-class Repository {
+class Repository @Inject constructor(){
     private val response: MutableLiveData<ApiResult<List<ProductsData>>> = MutableLiveData()
     val liveData: LiveData<ApiResult<List<ProductsData>>>
         get() = response

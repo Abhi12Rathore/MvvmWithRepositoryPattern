@@ -15,11 +15,17 @@ import com.example.sample.viewModelFactory.MainViewModelFactory
 import com.example.sample.viewmodels.MainActivityViewModels
 import com.example.sample.views.adapter.MainActivityAdapter
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var mContentViewBinding: ActivityMainBinding
+
+    @Inject
+    lateinit var repository: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         val mainActivityViewModels: MainActivityViewModels = ViewModelProvider(
             this, MainViewModelFactory(
-                Repository()
+                repository
             )
         )[MainActivityViewModels::class.java]
         mainActivityViewModels.fetchProductData()
