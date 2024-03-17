@@ -8,9 +8,12 @@ import com.example.sample.models.ProductsData
 import com.example.sample.network.APIClient
 import com.example.sample.network.ApiResult
 import com.example.sample.repositories.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivityViewModels(private val repo:Repository) : ViewModel() {
+@HiltViewModel
+class MainActivityViewModels @Inject constructor(private val repo:Repository) : ViewModel() {
     val liveData: LiveData<ApiResult<List<ProductsData>>>
         get() = repo.liveData
 

@@ -11,7 +11,6 @@ import com.example.sample.R
 import com.example.sample.databinding.ActivityMainBinding
 import com.example.sample.network.ApiResult
 import com.example.sample.repositories.Repository
-import com.example.sample.viewModelFactory.MainViewModelFactory
 import com.example.sample.viewmodels.MainActivityViewModels
 import com.example.sample.views.adapter.MainActivityAdapter
 import com.google.gson.Gson
@@ -24,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mContentViewBinding: ActivityMainBinding
 
-    @Inject
-    lateinit var repository: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val mainActivityViewModels: MainActivityViewModels = ViewModelProvider(
-            this, MainViewModelFactory(
-                repository
-            )
+            this
         )[MainActivityViewModels::class.java]
         mainActivityViewModels.fetchProductData()
 
